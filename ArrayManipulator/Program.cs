@@ -18,7 +18,6 @@ class MyClass
     /// <summary>
     /// method for showing array
     /// </summary>
-    /// <param name="mainArray"></param>
     static void ShowArray(int[] mainArray)
     {
         for (int i = 0; i < mainArray.Length; i++)
@@ -51,9 +50,22 @@ class MyClass
     /// <summary>
     /// method for adding number to the start of an array
     /// </summary>
-    static void AddToStart()
+    static void AddToStart(ref int[] mainArray)
     {
+        Console.Write("Enter the number you want to put at the start of the array ->");
 
+        if (!int.TryParse(Console.ReadLine(), out int userNumber))
+        {
+            Console.WriteLine("Enter the number!");
+            return;
+        }
+
+        int[] tempArray = new int [mainArray.Length + 1];
+
+        Array.Copy(mainArray, 0, tempArray, 1, mainArray.Length);
+        tempArray[0] = userNumber;
+        
+        mainArray = tempArray;
     }
 
     /// <summary>
@@ -98,7 +110,7 @@ class MyClass
                     AddToEnd(ref mainArray); break;
 
                 case "3":
-                    break;
+                    AddToStart(ref mainArray); break;
 
                 case "exit":
                     return;
