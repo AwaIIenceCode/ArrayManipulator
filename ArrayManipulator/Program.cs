@@ -20,6 +20,8 @@ class MyClass
     /// </summary>
     static void ShowArray(int[] mainArray)
     {
+        Console.WriteLine();
+        
         for (int i = 0; i < mainArray.Length; i++)
         {
             Console.Write(mainArray[i] + " ");
@@ -31,13 +33,9 @@ class MyClass
     /// </summary>
     static void AddToEnd(ref int[] mainArray)
     {
-        Console.Write("Enter the number you want to put at the end of the array ->");
+        Console.Write("Enter the number you want to put at the end of the array -> ");
 
-        if (!int.TryParse(Console.ReadLine(), out int userNumber))
-        {
-            Console.WriteLine("Enter the number!");
-            return;
-        }
+        if (!int.TryParse(Console.ReadLine(), out int userNumber)) { Console.WriteLine("Enter the number!"); return; }
 
         int[] tempArray = new int [mainArray.Length + 1];
 
@@ -52,13 +50,9 @@ class MyClass
     /// </summary>
     static void AddToStart(ref int[] mainArray)
     {
-        Console.Write("Enter the number you want to put at the start of the array ->");
+        Console.Write("Enter the number you want to put at the start of the array -> ");
 
-        if (!int.TryParse(Console.ReadLine(), out int userNumber))
-        {
-            Console.WriteLine("Enter the number!");
-            return;
-        }
+        if (!int.TryParse(Console.ReadLine(), out int userNumber)) { Console.WriteLine("Enter the number!"); return; }
 
         int[] tempArray = new int [mainArray.Length + 1];
 
@@ -71,9 +65,20 @@ class MyClass
     /// <summary>
     /// method for adding number to the user index of an array
     /// </summary>
-    static void AddAtIndex()
+    static void AddAtIndex(ref int[] mainArray)
     {
+        Console.Write("Enter the NUMBER you want to put at the index of the array -> ");
+        if (!int.TryParse(Console.ReadLine(), out int userNumber)) { Console.WriteLine("Enter the number!"); return; }
+        
+        Console.Write("Enter the INDEX on which to place the number -> ");
+        if (!int.TryParse(Console.ReadLine(), out int userIndex) || userIndex > mainArray.Length || userIndex < 0) { Console.WriteLine("Must be in array range!"); return; }
 
+        int[] tempArray = new int[mainArray.Length + 1];
+        
+        Array.Copy(mainArray, 0, tempArray, 0, userIndex);
+        Array.Copy(mainArray, userIndex, tempArray, userIndex + 1, mainArray.Length - userIndex);
+
+        mainArray = tempArray;
     }
 
     static void Main()
@@ -94,7 +99,7 @@ class MyClass
             Console.WriteLine("\n\n1 - for showing full array" +
                               "\n2 - for add number to the end at an array" +
                               "\n3 - for add number to the start at an array" +
-                              "\n4 for add number to index of an array" +
+                              "\n4 - for add number to index of an array" +
                               "\nWrite \"Exit\" for exit the program");
 
             Console.Write("\nEnter your choice -> ");
@@ -111,6 +116,9 @@ class MyClass
 
                 case "3":
                     AddToStart(ref mainArray); break;
+                
+                case "4":
+                    AddAtIndex(ref mainArray); break;
 
                 case "exit":
                     return;
