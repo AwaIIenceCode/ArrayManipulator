@@ -43,6 +43,8 @@ class MyClass
         tempArray[^1] = userNumber;
         
         mainArray = tempArray;
+        
+        ShowArray(mainArray);
     }
 
     /// <summary>
@@ -60,6 +62,8 @@ class MyClass
         tempArray[0] = userNumber;
         
         mainArray = tempArray;
+        
+        ShowArray(mainArray);
     }
 
     /// <summary>
@@ -82,6 +86,8 @@ class MyClass
         Array.Copy(mainArray, userIndex, tempArray, userIndex + 1, mainArray.Length - userIndex);
 
         mainArray = tempArray;
+        
+        ShowArray(mainArray);
     }
 
     static void Main()
