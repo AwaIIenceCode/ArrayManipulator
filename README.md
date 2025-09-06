@@ -3,7 +3,7 @@
 A C# console application for practicing array manipulation with methods to add elements at the start, end, and specific index.
 
 ## How to Run
-1. `git clone https://github.com/AwaIIenceCode/ArrayResize.git`
+1. `git clone https://github.com/AwaIIenceCode/ArrayManipulator.git`
 2. Open in Visual Studio or Rider.
 3. Build and run the project.
 4. Follow on-screen prompts to generate an array and add numbers.
