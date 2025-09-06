@@ -39,7 +39,7 @@ class MyClass
 
         int[] tempArray = new int [mainArray.Length + 1];
 
-        Array.Copy(mainArray,tempArray, mainArray.Length);
+        Array.Copy(mainArray,0, tempArray, 0, mainArray.Length);
         tempArray[^1] = userNumber;
         
         mainArray = tempArray;
@@ -71,11 +71,14 @@ class MyClass
         if (!int.TryParse(Console.ReadLine(), out int userNumber)) { Console.WriteLine("Enter the number!"); return; }
         
         Console.Write("Enter the INDEX on which to place the number -> ");
-        if (!int.TryParse(Console.ReadLine(), out int userIndex) || userIndex > mainArray.Length || userIndex < 0) { Console.WriteLine("Must be in array range!"); return; }
+        if (!int.TryParse(Console.ReadLine(), out int userIndex) || userIndex >= mainArray.Length || userIndex <= 0) { Console.WriteLine("Must be in array range!"); return; }
 
+        if (mainArray.Length == 0) { Console.WriteLine("Your array is empty!"); return; }
+        
         int[] tempArray = new int[mainArray.Length + 1];
         
         Array.Copy(mainArray, 0, tempArray, 0, userIndex);
+        tempArray[userIndex] = userNumber;
         Array.Copy(mainArray, userIndex, tempArray, userIndex + 1, mainArray.Length - userIndex);
 
         mainArray = tempArray;
